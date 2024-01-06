@@ -16,18 +16,10 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
 include(cmake_functions)
 
 option(BUILD_TESTING "Build tests" ON)
-option(USE_GNU_INSTALL_DIR "Ise GNU standard installation directories" ON)
-
-if(USE_GNU_INSTALL_DIR)
-    include(GNUInstallDirs)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-endif()
-
 
 if(BUILD_TESTING)
     enable_testing()
-endif ()
+endif()
 
 add_subdirectory(third-party)
 add_subdirectory(common)
