@@ -22,7 +22,8 @@ if(BUILD_TESTING)
 endif()
 
 add_subdirectory(third-party)
-add_subdirectory(common)
+# add_subdirectory(common)
+add_subdirectory(ip_filter)
 
 set(CPACK_GENERATOR DEB)
 
