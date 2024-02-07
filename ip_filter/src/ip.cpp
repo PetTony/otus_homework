@@ -62,9 +62,7 @@ bool Filter (const int position, const uint32_t value, const uint32_t ip)
     bool is_value_correct = value > 0 && value <= 255;
     bool is_condition_true = ((ip >> (32 - position * 8)) & 0xFF) == value;
 
-    if (is_position_correct && is_value_correct && is_condition_true)
-        return true;
-    return false;
+    return is_position_correct && is_value_correct && is_condition_true;
 };
 
 void PrintIp (const uint32_t ip)
