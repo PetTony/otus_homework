@@ -1,9 +1,6 @@
 #include "ip.h"
 #include <gtest/gtest.h>
 
-
-//uint32_t IpToInt (const std::string& ip);
-
 const std::string correct_ip = "192.168.122.7";
 const std::string incorrect_ip = "192.168.122.7";
 

@@ -32,7 +32,10 @@ int main(void)
         for (int i = 1; i <= 4; ++i)
         {
             if (Filter(i, 46, ip))
+            {
                 PrintIp(ip);
+                break;
+            }
         }
     }
 }
