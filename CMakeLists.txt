@@ -23,7 +23,8 @@ endif()
 
 add_subdirectory(third-party)
 # add_subdirectory(common)
-add_subdirectory(ip_filter)
+# add_subdirectory(ip_filter)
+add_subdirectory(allocator)
 
 set(CPACK_GENERATOR DEB)
 
