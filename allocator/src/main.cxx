@@ -13,12 +13,6 @@ T Factorial(T n)
 
 int main(void)
 {
-    auto PrintMap = [](auto &map)
-    {
-        for (const auto &[key, value] : map)
-            std::cout << key << " " << value << std::endl;
-    };
-
     std::map<int, int> map_std_alloc;
     std::map<int, int, std::less<int>, MyAllocator<std::pair<const int, int>, 10>> map_own_alloc;
 
@@ -28,7 +22,8 @@ int main(void)
         map_own_alloc.emplace(i, Factorial(i));
     }
 
-    PrintMap(map_own_alloc);
+    for (const auto &[key, value] : map_own_alloc)
+        std::cout << key << " " << value << std::endl;
 
     MyList<int> list_std_alloc;
     MyList<int, MyAllocator<int, 10>> list_own_alloc;
