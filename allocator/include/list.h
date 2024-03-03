@@ -23,6 +23,7 @@ struct MyList
             Node* node = _first;
             _first = _first->_next;
             _allocator.destroy(node);
+            _allocator.deallocate(node, 1);
         }
     }
     void push_back(T val)
