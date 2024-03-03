@@ -9,26 +9,34 @@ struct MyList
     {
         T _val;
         Node* _next;
-        Node (T val) : _val(val), _next(nullptr) {}
+        Node (T val, Node* next) : _val(val), _next(next) {}
     };
 
-    Node *_first = nullptr;
-    Node *_last = nullptr;
+    Node* _first = nullptr;
+    Node* _last = nullptr;
+
     MyList() {}
-    ~MyList() {}
+    ~MyList()
+    {
+        while(_first)
+        {
+            Node* node = _first;
+            _first = _first->_next;
+            _allocator.destroy(node);
+        }
+    }
     void push_back(T val)
     {
-        Node *p = _allocator.allocate(1);
-        p->_val = val;
-        p->_next = nullptr;
-        if (_first == nullptr)
+        Node *node = _allocator.allocate(1);
+        _allocator.construct(node, val, nullptr);
+        if (!_first)
         {
-            _first = p;
-            _last = p;
+            _first = node;
+            _last = node;
             return;
         }
-        _last->_next = p;
-        _last = p;
+        _last->_next = node;
+        _last = node;
     }
 private:
     using NodeAllocator = typename Allocator::template rebind<Node>::other;

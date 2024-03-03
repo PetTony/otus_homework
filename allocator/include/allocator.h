@@ -7,8 +7,8 @@ struct MyAllocator
 {
     typedef T value_type;
 
-    static int _pos;
-    const size_t _size;
+    int _pos{};
+    const size_t _size{};
     T* _data = nullptr;
 
     MyAllocator() : _size{size}
@@ -17,11 +17,11 @@ struct MyAllocator
     }
     ~MyAllocator()
     {
-        delete[] _data;
+        std::free(_data);
     }
 
-    template<class U> MyAllocator(const MyAllocator<U, size> &) = delete;
-    template<class U> MyAllocator(MyAllocator<U, size> &&) = delete;
+    MyAllocator(const MyAllocator<T, size> &) = delete;
+    MyAllocator(MyAllocator<T, size> &&) = delete;
 
     T* allocate (std::size_t n)
     {
@@ -37,15 +37,24 @@ struct MyAllocator
 
     void deallocate ([[maybe_unused]] T* p, [[maybe_unused]] std::size_t n) {}
 
+    template <typename U, typename... Args>
+    void construct(U* p, Args&&... args)
+    {
+        new (p) U(std::forward<Args>(args)...);
+    }
+
+    template <typename U>
+    void destroy(U *p)
+    {
+        p->~U();
+    }
+
     template<class U>
     struct rebind
     {
         typedef MyAllocator<U, size> other;
     };
 };
-
-template <typename T, size_t size>
-int MyAllocator<T, size>::_pos = 0;
 
 template<class T, class U, size_t size>
 constexpr bool operator==(const MyAllocator<T, size>& a1, const MyAllocator<U, size>& a2) noexcept
