@@ -41,7 +41,7 @@ void PrintIp(T ip)
 /**
  * @brief Print ip
  *
- * @param ip Vector or list ip
+ * @param ip Vector or List ip
  */
 template<typename T,
     typename std::enable_if_t<!std::is_same_v<typename T::value_type, char>, bool> = true>
