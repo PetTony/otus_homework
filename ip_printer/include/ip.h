@@ -2,6 +2,12 @@
 
 #include <iostream>
 
+/**
+ * @brief Print ip
+ *
+ * @param ip Integer ip
+ */
+
 template <typename T,
     typename std::enable_if_t<std::is_integral_v<T>, bool> = true>
 void PrintIp(T ip)
@@ -19,6 +25,11 @@ void PrintIp(T ip)
     return;
 }
 
+/**
+ * @brief Print ip
+ *
+ * @param ip String ip
+ */
 template <typename T,
     typename std::enable_if_t<std::is_same_v<T, std::string>, bool> = true>
 void PrintIp(T ip)
@@ -27,6 +38,11 @@ void PrintIp(T ip)
     return;
 }
 
+/**
+ * @brief Print ip
+ *
+ * @param ip Vector or list ip
+ */
 template<typename T,
     typename std::enable_if_t<!std::is_same_v<typename T::value_type, char>, bool> = true>
 void PrintIp(T ips)
