@@ -1,26 +1,23 @@
 name: Documentation
+
 on:
   push:
-    branches:
-      - main
-      - feature/github_actions
+    branches: [ main ]
 
 jobs:
   build-documentation:
     runs-on: ubuntu-latest
-    permissions: write-all
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: true
-    # Build the HTML documentation
+      - uses: actions/checkout@v2
+
       - name: Doxygen Action
         uses: mattnotmitt/doxygen-action@v1.1.0
         with:
-            doxyfile-path: ./doc/Doxyfile
-            working-directory: .
-    
-    # Deploy the HTML documentation to GitHub Pages
+          doxyfile-path: ./Doxyfile
+          working-directory: .
+
       - name: GH Pages Deployment
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -30,3 +27,4 @@ jobs:
           allow_empty_commit: false
           force_orphan: true
           publish_branch: gh-pages
+          
