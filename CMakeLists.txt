@@ -26,7 +26,8 @@ add_subdirectory(third-party)
 # add_subdirectory(ip_filter)
 # add_subdirectory(allocator)
 # add_subdirectory(ip_printer)
-add_subdirectory(vector_editor)
+# add_subdirectory(vector_editor)
+add_subdirectory(matrix)
 
 set(CPACK_GENERATOR DEB)
 
