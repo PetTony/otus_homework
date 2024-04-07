@@ -3,6 +3,7 @@
 #include <array>
 #include <map>
 #include <cassert>
+#include <cstddef>
 
 template<typename T, T Default, size_t Dimention>
 class Matrix
